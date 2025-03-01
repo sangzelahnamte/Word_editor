@@ -17,6 +17,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionCopy, &QAction::triggered, ui->text_area, &QTextEdit::copy);
     connect(ui->actionPaste, &QAction::triggered, ui->text_area, &QTextEdit::paste);
     connect(ui->actionClose, &QAction::triggered, this, &MainWindow::close);
+    // TOOL BAR VIEW
+    connect(ui->actionToolbar_top, &QAction::triggered, this, &MainWindow::toolbar_top);
+    connect(ui->actionToolbar_left, &QAction::triggered, this, &MainWindow::toolbar_left);
+    connect(ui->actionToolbar_right, &QAction::triggered, this, &MainWindow::toolbar_right);
+    connect(ui->actionToolbar_bottom, &QAction::triggered, this, &MainWindow::toolbar_bottom);
+    connect(ui->actionToolbar_moveable, &QAction::toggled, this, &MainWindow::toolbar_moveable);
+    connect(ui->actionToolbar_floatable, &QAction::toggled, this, &MainWindow::toolbar_floatable);
 
     new_file();
     m_save = true;
@@ -95,6 +102,38 @@ void MainWindow::save_as()
 void MainWindow::select_none()
 {
     QTextCursor cursor = ui->text_area->textCursor(); // initializing text cursor
-    cursor.setPosition(0, QTextCursor::MoveMode::KeepAnchor); // move anchor at the beginning
+    int cursor_position = cursor.position();
+    cursor.clearSelection();
+    cursor.setPosition(cursor_position, QTextCursor::MoveMode::KeepAnchor); // move anchor at the beginning
     ui->text_area->setTextCursor(cursor);// setting the text cursor to text area
+}
+
+void MainWindow::toolbar_top()
+{
+
+}
+
+void MainWindow::toolbar_left()
+{
+
+}
+
+void MainWindow::toolbar_right()
+{
+
+}
+
+void MainWindow::toolbar_bottom()
+{
+
+}
+
+void MainWindow::toolbar_moveable()
+{
+
+}
+
+void MainWindow::toolbar_floatable()
+{
+
 }

@@ -27,6 +27,12 @@ private slots:
     void save_file();
     void save_as();
     void select_none();
+    void toolbar_top();
+    void toolbar_left();
+    void toolbar_right();
+    void toolbar_bottom();
+    void toolbar_moveable(); // move able toolbar
+    void toolbar_floatable(); // floatable
 
 private:
     Ui::MainWindow *ui;
