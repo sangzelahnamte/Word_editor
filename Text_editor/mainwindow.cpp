@@ -41,7 +41,7 @@ void MainWindow::open_file() // OPEN
                                                      "Text files(*txt);;All files(*,*)");
     if(file_path.isEmpty()) return; // engmah a select loh chuan
     m_file_name = file_path; // setting file name to member variable
-    QFile file(file_path);
+    QFile file(m_file_name);
     if(file.open(QIODevice::ReadOnly)) // a hawn theih chuan file thar hawng rawhse
     {
         QTextStream text_stream(&file);
@@ -61,21 +61,40 @@ void MainWindow::open_file() // OPEN
     }
 }
 
-void MainWindow::save_file()
+void MainWindow::save_file() // SAVE
 {
     if(m_file_name.isEmpty())
     {
         save_as();
         return;
     }
+    QFile file(m_file_name);
+    if(file.open(QIODevice::WriteOnly)) // a hawn theih chuan file a save theih
+    {
+        QTextStream text_stream(&file);
+        text_stream << ui->text_area->toPlainText();
+        file.close();
+        m_save = true;
+        ui->statusbar->showMessage(m_file_name);
+    }
+    else // a hawn theih loh chuan file error message
+    {
+        QMessageBox::critical(this, "ERROR!!!", file.errorString());
+        return;
+    }
 }
 
 void MainWindow::save_as()
 {
-
+    QString file_path = QFileDialog::getSaveFileName(this, "Save file", QString(), "Text files(*txt);;All files(*,*)");
+    if(file_path.isEmpty()) return;
+    m_file_name = file_path;
+    save_file();
 }
 
 void MainWindow::select_none()
 {
-
+    QTextCursor cursor = ui->text_area->textCursor(); // initializing text cursor
+    cursor.setPosition(0, QTextCursor::MoveMode::KeepAnchor); // move anchor at the beginning
+    ui->text_area->setTextCursor(cursor);// setting the text cursor to text area
 }
