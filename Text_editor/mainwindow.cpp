@@ -108,32 +108,32 @@ void MainWindow::select_none()
     ui->text_area->setTextCursor(cursor);// setting the text cursor to text area
 }
 
-void MainWindow::toolbar_top()
+void MainWindow::toolbar_top() // add toolbar to top
 {
-
+    addToolBar(Qt::ToolBarArea::TopToolBarArea, ui->toolBar);
 }
 
 void MainWindow::toolbar_left()
 {
-
+    addToolBar(Qt::ToolBarArea::LeftToolBarArea, ui->toolBar);
 }
 
 void MainWindow::toolbar_right()
 {
-
+    addToolBar(Qt::ToolBarArea::RightToolBarArea, ui->toolBar);
 }
 
 void MainWindow::toolbar_bottom()
 {
-
+    addToolBar(Qt::ToolBarArea::BottomToolBarArea, ui->toolBar);
 }
 
-void MainWindow::toolbar_moveable()
+void MainWindow::toolbar_moveable(bool arg)
 {
-
+    ui->toolBar->setMovable(arg);
 }
 
-void MainWindow::toolbar_floatable()
+void MainWindow::toolbar_floatable(bool arg)
 {
-
+    ui->toolBar->setFloatable(arg);
 }

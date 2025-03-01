@@ -31,8 +31,8 @@ private slots:
     void toolbar_left();
     void toolbar_right();
     void toolbar_bottom();
-    void toolbar_moveable(); // move able toolbar
-    void toolbar_floatable(); // floatable
+    void toolbar_moveable(bool arg); // move able toolbar
+    void toolbar_floatable(bool arg); // floatable
 
 private:
     Ui::MainWindow *ui;
