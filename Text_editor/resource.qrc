@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>image/about.png</file>
+        <file>image/clear.png</file>
+        <file>image/colour.png</file>
+        <file>image/copy.png</file>
+        <file>image/cut.png</file>
+        <file>image/delete.png</file>
+        <file>image/export.png</file>
+        <file>image/file.png</file>
+        <file>image/folder.png</file>
+        <file>image/font_large.png</file>
+        <file>image/font_small.png</file>
+        <file>image/help.png</file>
+        <file>image/import.png</file>
+        <file>image/logout.png</file>
+        <file>image/new.png</file>
+        <file>image/paste.png</file>
+        <file>image/preference.png</file>
+        <file>image/printer.png</file>
+        <file>image/save.png</file>
+        <file>image/save_as.png</file>
+        <file>image/select_all.png</file>
+    </qresource>
+</RCC>
