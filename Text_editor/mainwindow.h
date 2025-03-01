@@ -6,6 +6,9 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
+#include <QStatusBar>
+#include <QDebug>
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,9 +37,13 @@ private slots:
     void toolbar_moveable(bool arg); // move able toolbar
     void toolbar_floatable(bool arg); // floatable
 
+    void on_text_area_textChanged();
+
 private:
     Ui::MainWindow *ui;
     QString m_file_name;
     bool m_save;
+    void setup_statusbar();
+    void update_status(QString message);
 };
 #endif // MAINWINDOW_H

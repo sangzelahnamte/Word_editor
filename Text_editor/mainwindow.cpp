@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setCentralWidget(ui->text_area);
+
     connect(ui->actionNew, &QAction::triggered, this, &MainWindow::new_file); // new file
     connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::open_file); // open file
     connect(ui->actionSave, &QAction::triggered, this, &MainWindow::save_file); // save file
@@ -25,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionToolbar_moveable, &QAction::toggled, this, &MainWindow::toolbar_moveable);
     connect(ui->actionToolbar_floatable, &QAction::toggled, this, &MainWindow::toolbar_floatable);
 
+    setup_statusbar();
     new_file();
     m_save = true;
 }
@@ -39,7 +41,7 @@ void MainWindow::new_file()
     ui->text_area->clear();
     m_file_name.clear();
     m_save = false;
-    ui->statusbar->showMessage("New file");
+    //ui->statusbar->showMessage("New file");
 }
 
 void MainWindow::open_file() // OPEN
@@ -58,7 +60,7 @@ void MainWindow::open_file() // OPEN
         }
         file.close();
         m_save = true;
-        ui->statusbar->showMessage(m_file_name);
+        //ui->statusbar->showMessage(m_file_name);
     }
     else // a hawn theih loh chuan file thar a hawng ang
     {
@@ -82,7 +84,7 @@ void MainWindow::save_file() // SAVE
         text_stream << ui->text_area->toPlainText();
         file.close();
         m_save = true;
-        ui->statusbar->showMessage(m_file_name);
+        //ui->statusbar->showMessage(m_file_name);
     }
     else // a hawn theih loh chuan file error message
     {
@@ -137,3 +139,56 @@ void MainWindow::toolbar_floatable(bool arg)
 {
     ui->toolBar->setFloatable(arg);
 }
+
+void MainWindow::setup_statusbar() // sets up the status bar display
+{
+    QLabel *label_icon = new QLabel(this);
+    label_icon->setPixmap(QPixmap("qrc:/image/image/new.png"));
+    ui->statusbar->addWidget(label_icon);
+
+    QLabel *label_message = new QLabel(this);
+    label_message->setText("Not saved:");
+    ui->statusbar->addWidget(label_message);
+
+    QLabel *label_fileName = new QLabel(this);
+    label_fileName->setText("New");
+    ui->statusbar->addWidget(label_fileName);
+}
+
+void MainWindow::update_status(QString message)
+{
+    foreach(QObject *obj, ui->statusbar->children())
+    {
+        qDebug() << obj;
+    }
+
+    QLabel *label_icon = qobject_cast<QLabel*>(ui->statusbar->children().at(1));
+    QLabel *label_message = qobject_cast<QLabel*>(ui->statusbar->children().at(2));
+    QLabel *label_fileName = qobject_cast<QLabel*>(ui->statusbar->children().at(4));
+    if(m_save)
+    {
+        label_icon->setPixmap(QPixmap("qrc:/image/image/new.png"));
+        label_message->setText("Saved:");
+    }
+    else
+    {
+        label_icon->setPixmap(QPixmap("qrc:/image/image/new.png"));
+        label_message->setText("Not Saved:");
+    }
+
+    label_fileName->setText(m_file_name);
+}
+
+void MainWindow::on_text_area_textChanged()
+{
+    m_save = false;
+    if(m_file_name.isEmpty())
+    {
+        update_status("New file");
+    }
+    else
+    {
+        update_status(m_file_name);
+    }
+}
+
