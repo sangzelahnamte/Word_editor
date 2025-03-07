@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::open_file); // open file
     connect(ui->actionSave, &QAction::triggered, this, &MainWindow::save_file); // save file
     connect(ui->actionSave_As, &QAction::triggered, this, &MainWindow::save_as); // save as
+    // CUT COPY PASTE.....
     connect(ui->actionSelect_All, &QAction::triggered, ui->text_area, &QTextEdit::selectAll); // select all
     connect(ui->actionSelect_none, &QAction::triggered, this, &MainWindow::select_none);
     connect(ui->actionCut, &QAction::triggered, ui->text_area, &QTextEdit::cut);
@@ -25,7 +26,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionToolbar_bottom, &QAction::triggered, this, &MainWindow::toolbar_bottom);
     connect(ui->actionToolbar_moveable, &QAction::toggled, this, &MainWindow::toolbar_moveable);
     connect(ui->actionToolbar_floatable, &QAction::toggled, this, &MainWindow::toolbar_floatable);
-
+    // TEXT FONT BOLD ITALIC UNDERLINE....
+    connect(ui->actionBold, &QAction::triggered, this, &MainWindow::set_bold);
+    connect(ui->actionItalic, &QAction::triggered, this, &MainWindow::set_italic);
+    connect(ui->actionUnderline, &QAction::triggered, this, &MainWindow::set_underline);
+    connect(ui->actionStrikeout, &QAction::triggered, this, &MainWindow::set_strikeout);
+    // UNDO REDO
+    connect(ui->actionUndo, &QAction::triggered, ui->text_area, &QTextEdit::undo);
+    connect(ui->actionRedo, &QAction::triggered, ui->text_area, &QTextEdit::redo);
     setup_statusbar();
     new_file();
     m_save = true;
@@ -42,6 +50,7 @@ void MainWindow::new_file()
     m_file_name.clear();
     m_save = false;
     //ui->statusbar->showMessage("New file");
+    update_status("New file");
 }
 
 void MainWindow::open_file() // OPEN
@@ -68,6 +77,7 @@ void MainWindow::open_file() // OPEN
         QMessageBox::critical(this, "ERROR!!!", file.errorString());
         return;
     }
+    update_status(m_file_name);
 }
 
 void MainWindow::save_file() // SAVE
@@ -91,6 +101,7 @@ void MainWindow::save_file() // SAVE
         QMessageBox::critical(this, "ERROR!!!", file.errorString());
         return;
     }
+    update_status(m_file_name);
 }
 
 void MainWindow::save_as()
@@ -142,24 +153,27 @@ void MainWindow::toolbar_floatable(bool arg)
 
 void MainWindow::setup_statusbar() // sets up the status bar display
 {
+    // displays the icon on the status bar
     QLabel *label_icon = new QLabel(this);
     label_icon->setPixmap(QPixmap("qrc:/image/image/new.png"));
     ui->statusbar->addWidget(label_icon);
 
+    // displays a text on the status bar
     QLabel *label_message = new QLabel(this);
     label_message->setText("Not saved:");
     ui->statusbar->addWidget(label_message);
 
-    QLabel *label_fileName = new QLabel(this);
-    label_fileName->setText("New");
-    ui->statusbar->addWidget(label_fileName);
+    // displays a file status on the status bar
+    QLabel *label_fileStatus = new QLabel(this);
+    label_fileStatus->setText("New");
+    ui->statusbar->addWidget(label_fileStatus);
 }
 
 void MainWindow::update_status(QString message)
 {
-    foreach(QObject *obj, ui->statusbar->children())
+    foreach(QObject *obj, ui->statusbar->children()) // display the info of status in console
     {
-        qDebug() << obj;
+        qDebug() << "debug status: " << obj;
     }
 
     QLabel *label_icon = qobject_cast<QLabel*>(ui->statusbar->children().at(1));
@@ -167,7 +181,7 @@ void MainWindow::update_status(QString message)
     QLabel *label_fileName = qobject_cast<QLabel*>(ui->statusbar->children().at(4));
     if(m_save)
     {
-        label_icon->setPixmap(QPixmap("qrc:/image/image/new.png"));
+        label_icon->setPixmap(QPixmap("qrc:/image/image/save.png"));
         label_message->setText("Saved:");
     }
     else
@@ -190,5 +204,33 @@ void MainWindow::on_text_area_textChanged()
     {
         update_status(m_file_name);
     }
+}
+
+void MainWindow::set_bold() // BOLD
+{
+    QFont font = ui->text_area->currentFont();
+    font.bold() ? font.setBold(false) : font.setBold(true);
+    ui->text_area->setCurrentFont(font);
+}
+
+void MainWindow::set_italic() // ITALIC
+{
+    QFont font = ui->text_area->currentFont();
+    font.italic() ? font.setItalic(false) : font.setItalic(true);
+    ui->text_area->setCurrentFont(font);
+}
+
+void MainWindow::set_underline() // UNDERLINE
+{
+    QFont font = ui->text_area->currentFont();
+    font.underline() ? font.setUnderline(false) : font.setUnderline(true);
+    ui->text_area->setCurrentFont(font);
+}
+
+void MainWindow::set_strikeout() // STRIKEOUT
+{
+    QFont font = ui->text_area->currentFont();
+    font.strikeOut() ? font.setStrikeOut(false) : font.setStrikeOut(true);
+    ui->text_area->setCurrentFont(font);
 }
 

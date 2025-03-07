@@ -89,9 +89,10 @@
     <property name="title">
      <string>Add</string>
     </property>
-    <addaction name="actionSnake"/>
-    <addaction name="actionDog"/>
-    <addaction name="actionBirds"/>
+    <addaction name="actionBold"/>
+    <addaction name="actionItalic"/>
+    <addaction name="actionUnderline"/>
+    <addaction name="actionStrikeout"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -122,6 +123,13 @@
    <addaction name="actionPaste"/>
    <addaction name="actionSelect_All"/>
    <addaction name="separator"/>
+   <addaction name="actionBold"/>
+   <addaction name="actionItalic"/>
+   <addaction name="actionUnderline"/>
+   <addaction name="actionStrikeout"/>
+   <addaction name="separator"/>
+   <addaction name="actionRedo"/>
+   <addaction name="actionUndo"/>
   </widget>
   <action name="actionNew">
    <property name="icon">
@@ -205,11 +213,19 @@
    </property>
   </action>
   <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/arrow_undo.png</normaloff>:/image/image/arrow_undo.png</iconset>
+   </property>
    <property name="text">
     <string>Undo</string>
    </property>
   </action>
   <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/arrow_redo.png</normaloff>:/image/image/arrow_redo.png</iconset>
+   </property>
    <property name="text">
     <string>Redo</string>
    </property>
@@ -319,19 +335,40 @@
     <string>Toolbar floatable</string>
    </property>
   </action>
-  <action name="actionSnake">
+  <action name="actionBold">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/text_bold.png</normaloff>:/image/image/text_bold.png</iconset>
+   </property>
    <property name="text">
-    <string>Snake</string>
+    <string>Bold</string>
    </property>
   </action>
-  <action name="actionDog">
+  <action name="actionItalic">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/text_italic.png</normaloff>:/image/image/text_italic.png</iconset>
+   </property>
    <property name="text">
-    <string>Dog</string>
+    <string>Italic</string>
    </property>
   </action>
-  <action name="actionBirds">
+  <action name="actionUnderline">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/text_underline.png</normaloff>:/image/image/text_underline.png</iconset>
+   </property>
    <property name="text">
-    <string>Birds</string>
+    <string>Underline</string>
+   </property>
+  </action>
+  <action name="actionStrikeout">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/text_strikethrough.png</normaloff>:/image/image/text_strikethrough.png</iconset>
+   </property>
+   <property name="text">
+    <string>Strikeout</string>
    </property>
   </action>
  </widget>

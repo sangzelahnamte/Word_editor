@@ -39,6 +39,11 @@ private slots:
 
     void on_text_area_textChanged();
 
+    void set_bold();
+    void set_italic();
+    void set_underline();
+    void set_strikeout();
+
 private:
     Ui::MainWindow *ui;
     QString m_file_name;

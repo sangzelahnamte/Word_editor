@@ -21,5 +21,11 @@
         <file>image/save.png</file>
         <file>image/save_as.png</file>
         <file>image/select_all.png</file>
+        <file>image/text_bold.png</file>
+        <file>image/text_italic.png</file>
+        <file>image/text_strikethrough.png</file>
+        <file>image/text_underline.png</file>
+        <file>image/arrow_redo.png</file>
+        <file>image/arrow_undo.png</file>
     </qresource>
 </RCC>
