@@ -44,6 +44,9 @@ private slots:
     void set_underline();
     void set_strikeout();
 
+    void set_zoom_out();
+    void set_zoom_in();
+
 private:
     Ui::MainWindow *ui;
     QString m_file_name;

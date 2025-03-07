@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionCopy, &QAction::triggered, ui->text_area, &QTextEdit::copy);
     connect(ui->actionPaste, &QAction::triggered, ui->text_area, &QTextEdit::paste);
     connect(ui->actionClose, &QAction::triggered, this, &MainWindow::close);
+    connect(ui->actionClear, &QAction::triggered, ui->text_area, &QTextEdit::clear);
     // TOOL BAR VIEW
     connect(ui->actionToolbar_top, &QAction::triggered, this, &MainWindow::toolbar_top);
     connect(ui->actionToolbar_left, &QAction::triggered, this, &MainWindow::toolbar_left);
@@ -34,6 +35,9 @@ MainWindow::MainWindow(QWidget *parent)
     // UNDO REDO
     connect(ui->actionUndo, &QAction::triggered, ui->text_area, &QTextEdit::undo);
     connect(ui->actionRedo, &QAction::triggered, ui->text_area, &QTextEdit::redo);
+    // ZOOM IN AND OUT
+    connect(ui->actionZoom_In, &QAction::triggered, this, &MainWindow::set_zoom_in);
+    connect(ui->actionZoom_Out, &QAction::triggered, this, &MainWindow::set_zoom_out);
     setup_statusbar();
     new_file();
     m_save = true;
@@ -232,5 +236,15 @@ void MainWindow::set_strikeout() // STRIKEOUT
     QFont font = ui->text_area->currentFont();
     font.strikeOut() ? font.setStrikeOut(false) : font.setStrikeOut(true);
     ui->text_area->setCurrentFont(font);
+}
+
+void MainWindow::set_zoom_out()
+{
+    ui->text_area->zoomOut(1);
+}
+
+void MainWindow::set_zoom_in()
+{
+    ui->text_area->zoomIn(1);
 }
 

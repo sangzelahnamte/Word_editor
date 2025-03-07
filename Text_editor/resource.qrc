@@ -27,5 +27,8 @@
         <file>image/text_underline.png</file>
         <file>image/arrow_redo.png</file>
         <file>image/arrow_undo.png</file>
+        <file>image/find.png</file>
+        <file>image/zoom_in.png</file>
+        <file>image/zoom_out.png</file>
     </qresource>
 </RCC>
