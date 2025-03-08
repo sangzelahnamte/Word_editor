@@ -49,6 +49,7 @@
     <addaction name="actionExport"/>
     <addaction name="separator"/>
     <addaction name="actionPrint"/>
+    <addaction name="actionPrint_preview"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
    </widget>
@@ -467,6 +468,11 @@
    </property>
    <property name="text">
     <string>Align right</string>
+   </property>
+  </action>
+  <action name="actionPrint_preview">
+   <property name="text">
+    <string>Print preview</string>
    </property>
   </action>
  </widget>

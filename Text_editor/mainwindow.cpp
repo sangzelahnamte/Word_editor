@@ -49,6 +49,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionAlign_left, &QAction::triggered, this, &MainWindow::set_align_left);
     connect(ui->actionAlign_right, &QAction::triggered, this, &MainWindow::set_align_right);
 
+    // PRINTER
+    connect(ui->actionPrint, &QAction::triggered, this, &MainWindow::print_dialog);
+    connect(ui->actionPrint_preview, &QAction::triggered, this, &MainWindow::preview_print_dialog);
+
     setup_statusbar();
     new_file();
     m_save = true;
@@ -293,5 +297,21 @@ void MainWindow::set_zoom_out()
 void MainWindow::set_zoom_in()
 {
     ui->text_area->zoomIn(1);
+}
+
+void MainWindow::print_dialog() // print method
+{
+    QPrinter myPrinter;
+    myPrinter.setPrinterName("Extreme printer 1000");
+    QPrintDialog dialog(&myPrinter, this);
+    if(dialog.exec() == QPrintDialog::Rejected) return;
+    ui->text_area->print(&myPrinter);
+}
+
+void MainWindow::preview_print_dialog() // preview print method
+{
+    QPrintPreviewDialog dialog;
+    connect(&dialog, &QPrintPreviewDialog::paintRequested, ui->text_area, &QTextEdit::print);
+    dialog.exec();
 }
 

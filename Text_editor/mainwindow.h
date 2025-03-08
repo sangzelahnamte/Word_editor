@@ -11,6 +11,9 @@
 #include <QLabel>
 #include <QColorDialog>
 #include <QFontDialog>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QPrintPreviewDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -53,6 +56,9 @@ private slots:
 
     void set_zoom_out();
     void set_zoom_in();
+
+    void print_dialog();
+    void preview_print_dialog();
 
 private:
     Ui::MainWindow *ui;
