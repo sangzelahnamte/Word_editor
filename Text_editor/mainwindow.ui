@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>874</width>
     <height>600</height>
    </rect>
   </property>
@@ -30,7 +30,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>874</width>
      <height>21</height>
     </rect>
    </property>
@@ -90,12 +90,20 @@
    </widget>
    <widget class="QMenu" name="menuAdd">
     <property name="title">
-     <string>Add</string>
+     <string>Insert</string>
     </property>
     <addaction name="actionBold"/>
     <addaction name="actionItalic"/>
     <addaction name="actionUnderline"/>
     <addaction name="actionStrikeout"/>
+    <addaction name="separator"/>
+    <addaction name="actionColour"/>
+    <addaction name="actionFont"/>
+    <addaction name="separator"/>
+    <addaction name="actionAlign_center"/>
+    <addaction name="actionAlign_Justify"/>
+    <addaction name="actionAlign_left"/>
+    <addaction name="actionAlign_right"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -125,6 +133,14 @@
    <addaction name="actionCopy"/>
    <addaction name="actionPaste"/>
    <addaction name="actionSelect_All"/>
+   <addaction name="separator"/>
+   <addaction name="actionColour"/>
+   <addaction name="actionFont"/>
+   <addaction name="separator"/>
+   <addaction name="actionAlign_center"/>
+   <addaction name="actionAlign_Justify"/>
+   <addaction name="actionAlign_left"/>
+   <addaction name="actionAlign_right"/>
    <addaction name="separator"/>
    <addaction name="actionBold"/>
    <addaction name="actionItalic"/>
@@ -397,6 +413,60 @@
    </property>
    <property name="text">
     <string>Zoom Out</string>
+   </property>
+  </action>
+  <action name="actionColour">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/colour.png</normaloff>:/image/image/colour.png</iconset>
+   </property>
+   <property name="text">
+    <string>Colour</string>
+   </property>
+  </action>
+  <action name="actionFont">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/font.png</normaloff>:/image/image/font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Font</string>
+   </property>
+  </action>
+  <action name="actionAlign_center">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/text_align_center.png</normaloff>:/image/image/text_align_center.png</iconset>
+   </property>
+   <property name="text">
+    <string>Align center</string>
+   </property>
+  </action>
+  <action name="actionAlign_Justify">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/text_align_justify.png</normaloff>:/image/image/text_align_justify.png</iconset>
+   </property>
+   <property name="text">
+    <string>Align Justify</string>
+   </property>
+  </action>
+  <action name="actionAlign_left">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/text_align_left.png</normaloff>:/image/image/text_align_left.png</iconset>
+   </property>
+   <property name="text">
+    <string>Align left</string>
+   </property>
+  </action>
+  <action name="actionAlign_right">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/image/text_align_right.png</normaloff>:/image/image/text_align_right.png</iconset>
+   </property>
+   <property name="text">
+    <string>Align right</string>
    </property>
   </action>
  </widget>

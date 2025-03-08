@@ -9,6 +9,8 @@
 #include <QStatusBar>
 #include <QDebug>
 #include <QLabel>
+#include <QColorDialog>
+#include <QFontDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -38,11 +40,16 @@ private slots:
     void toolbar_floatable(bool arg); // floatable
 
     void on_text_area_textChanged();
-
+    void set_font();
+    void set_colour();
     void set_bold();
     void set_italic();
     void set_underline();
     void set_strikeout();
+    void set_align_center();
+    void set_align_justify();
+    void set_align_left();
+    void set_align_right();
 
     void set_zoom_out();
     void set_zoom_in();

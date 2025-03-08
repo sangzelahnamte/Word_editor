@@ -38,6 +38,17 @@ MainWindow::MainWindow(QWidget *parent)
     // ZOOM IN AND OUT
     connect(ui->actionZoom_In, &QAction::triggered, this, &MainWindow::set_zoom_in);
     connect(ui->actionZoom_Out, &QAction::triggered, this, &MainWindow::set_zoom_out);
+
+    // FONT
+    connect(ui->actionFont, &QAction::triggered, this, &MainWindow::set_font);
+    // COLOUR
+    connect(ui->actionColour, &QAction::triggered, this, &MainWindow::set_colour);
+    // ALIGNMENT
+    connect(ui->actionAlign_center, &QAction::triggered, this, &MainWindow::set_align_center);
+    connect(ui->actionAlign_Justify, &QAction::triggered, this, &MainWindow::set_align_justify);
+    connect(ui->actionAlign_left, &QAction::triggered, this, &MainWindow::set_align_left);
+    connect(ui->actionAlign_right, &QAction::triggered, this, &MainWindow::set_align_right);
+
     setup_statusbar();
     new_file();
     m_save = true;
@@ -210,6 +221,22 @@ void MainWindow::on_text_area_textChanged()
     }
 }
 
+void MainWindow::set_font()
+{
+    bool ok = true;
+    QFont current = ui->text_area->currentCharFormat().font();
+    QFont font = QFontDialog::getFont(&ok, current, this, "Choose font");
+    ui->text_area->setCurrentFont(font);
+}
+
+void MainWindow::set_colour()
+{
+    QColor current = ui->text_area->currentCharFormat().foreground().color();
+    QColor colour = QColorDialog::getColor(current, this, "Choose colour");
+    ui->text_area->setTextColor(colour);
+    m_save = true;
+}
+
 void MainWindow::set_bold() // BOLD
 {
     QFont font = ui->text_area->currentFont();
@@ -236,6 +263,26 @@ void MainWindow::set_strikeout() // STRIKEOUT
     QFont font = ui->text_area->currentFont();
     font.strikeOut() ? font.setStrikeOut(false) : font.setStrikeOut(true);
     ui->text_area->setCurrentFont(font);
+}
+
+void MainWindow::set_align_center()
+{
+    ui->text_area->setAlignment(Qt::AlignCenter);
+}
+
+void MainWindow::set_align_justify()
+{
+    ui->text_area->setAlignment(Qt::AlignJustify);
+}
+
+void MainWindow::set_align_left()
+{
+    ui->text_area->setAlignment(Qt::AlignLeft);
+}
+
+void MainWindow::set_align_right()
+{
+    ui->text_area->setAlignment(Qt::AlignRight);
 }
 
 void MainWindow::set_zoom_out()
