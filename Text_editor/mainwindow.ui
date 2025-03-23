@@ -105,6 +105,9 @@
     <addaction name="actionAlign_Justify"/>
     <addaction name="actionAlign_left"/>
     <addaction name="actionAlign_right"/>
+    <addaction name="separator"/>
+    <addaction name="actionRight_indent"/>
+    <addaction name="actionLeft_indent"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -350,12 +353,18 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Toolbar moveable</string>
    </property>
   </action>
   <action name="actionToolbar_floatable">
    <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
     <bool>true</bool>
    </property>
    <property name="text">
@@ -473,6 +482,16 @@
   <action name="actionPrint_preview">
    <property name="text">
     <string>Print preview</string>
+   </property>
+  </action>
+  <action name="actionRight_indent">
+   <property name="text">
+    <string>Right indent</string>
+   </property>
+  </action>
+  <action name="actionLeft_indent">
+   <property name="text">
+    <string>Left indent</string>
    </property>
   </action>
  </widget>

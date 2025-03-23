@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setCentralWidget(ui->text_area);
-
+    // SIGNALS and SLOTS here!!!
     connect(ui->actionNew, &QAction::triggered, this, &MainWindow::new_file); // new file
     connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::open_file); // open file
     connect(ui->actionSave, &QAction::triggered, this, &MainWindow::save_file); // save file
@@ -52,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
     // PRINTER
     connect(ui->actionPrint, &QAction::triggered, this, &MainWindow::print_dialog);
     connect(ui->actionPrint_preview, &QAction::triggered, this, &MainWindow::preview_print_dialog);
+
 
     setup_statusbar();
     new_file();

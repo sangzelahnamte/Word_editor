@@ -36,4 +36,7 @@
         <file>image/text_align_left.png</file>
         <file>image/text_align_right.png</file>
     </qresource>
+    <qresource prefix="/theme">
+        <file>Combinear.qss</file>
+    </qresource>
 </RCC>
