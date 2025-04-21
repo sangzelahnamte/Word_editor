@@ -2,6 +2,9 @@
 
 #include <QApplication>
 #include <QFile>
+#include <QSplashScreen>
+#include <QPixmap>
+#include <QTimer>
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +13,15 @@ int main(int argc, char *argv[])
     stylesheetfile.open(QIODevice::ReadOnly);
     QString styles = qUtf8Printable(stylesheetfile.readAll()); // or to latin 1 string
     a.setStyleSheet(styles);
+    // added splash screen
+    QPixmap image(":/image/image/qt_splashscreen.png");
+    QSplashScreen splash(image);
+    splash.show();
+    QTimer::singleShot(3000, &splash, &QSplashScreen::close);
     MainWindow w;
-    w.show();
+    //w.show();
+    QTimer::singleShot(2000, [&w]() {
+        w.show();
+    });
     return a.exec();
 }

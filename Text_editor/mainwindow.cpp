@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionPaste, &QAction::triggered, ui->text_area, &QTextEdit::paste);
     connect(ui->actionClose, &QAction::triggered, this, &MainWindow::close);
     connect(ui->actionClear, &QAction::triggered, ui->text_area, &QTextEdit::clear);
+    connect(ui->actionPreference, &QAction::triggered, this, &MainWindow::preference);
     // TOOL BAR VIEW
     connect(ui->actionToolbar_top, &QAction::triggered, this, &MainWindow::toolbar_top);
     connect(ui->actionToolbar_left, &QAction::triggered, this, &MainWindow::toolbar_left);
@@ -169,6 +170,12 @@ void MainWindow::toolbar_moveable(bool arg)
 void MainWindow::toolbar_floatable(bool arg)
 {
     ui->toolBar->setFloatable(arg);
+}
+
+void MainWindow::preference() // PREFERENCES
+{
+    Preference *preference_dialog = new Preference(this);
+    preference_dialog->exec();
 }
 
 void MainWindow::setup_statusbar() // sets up the status bar display

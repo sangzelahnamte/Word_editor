@@ -35,6 +35,7 @@
         <file>image/text_align_justify.png</file>
         <file>image/text_align_left.png</file>
         <file>image/text_align_right.png</file>
+        <file>image/qt_splashscreen.png</file>
     </qresource>
     <qresource prefix="/theme">
         <file>Combinear.qss</file>

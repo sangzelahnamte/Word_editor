@@ -14,6 +14,7 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
+#include "preference.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -41,6 +42,7 @@ private slots:
     void toolbar_bottom();
     void toolbar_moveable(bool arg); // move able toolbar
     void toolbar_floatable(bool arg); // floatable
+    void preference();
 
     void on_text_area_textChanged();
     void set_font();
