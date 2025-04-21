@@ -14,7 +14,6 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
-#include "preference.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
