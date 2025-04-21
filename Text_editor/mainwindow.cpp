@@ -8,54 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setCentralWidget(ui->text_area);
-    // SIGNALS and SLOTS here!!!
-    connect(ui->actionNew, &QAction::triggered, this, &MainWindow::new_file); // new file
-    connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::open_file); // open file
-    connect(ui->actionSave, &QAction::triggered, this, &MainWindow::save_file); // save file
-    connect(ui->actionSave_As, &QAction::triggered, this, &MainWindow::save_as); // save as
-    // CUT COPY PASTE.....
-    connect(ui->actionSelect_All, &QAction::triggered, ui->text_area, &QTextEdit::selectAll); // select all
-    connect(ui->actionSelect_none, &QAction::triggered, this, &MainWindow::select_none);
-    connect(ui->actionCut, &QAction::triggered, ui->text_area, &QTextEdit::cut);
-    connect(ui->actionCopy, &QAction::triggered, ui->text_area, &QTextEdit::copy);
-    connect(ui->actionPaste, &QAction::triggered, ui->text_area, &QTextEdit::paste);
-    connect(ui->actionClose, &QAction::triggered, this, &MainWindow::close);
-    connect(ui->actionClear, &QAction::triggered, ui->text_area, &QTextEdit::clear);
-    connect(ui->actionPreference, &QAction::triggered, this, &MainWindow::preference);
-    // TOOL BAR VIEW
-    connect(ui->actionToolbar_top, &QAction::triggered, this, &MainWindow::toolbar_top);
-    connect(ui->actionToolbar_left, &QAction::triggered, this, &MainWindow::toolbar_left);
-    connect(ui->actionToolbar_right, &QAction::triggered, this, &MainWindow::toolbar_right);
-    connect(ui->actionToolbar_bottom, &QAction::triggered, this, &MainWindow::toolbar_bottom);
-    connect(ui->actionToolbar_moveable, &QAction::toggled, this, &MainWindow::toolbar_moveable);
-    connect(ui->actionToolbar_floatable, &QAction::toggled, this, &MainWindow::toolbar_floatable);
-    // TEXT FONT BOLD ITALIC UNDERLINE....
-    connect(ui->actionBold, &QAction::triggered, this, &MainWindow::set_bold);
-    connect(ui->actionItalic, &QAction::triggered, this, &MainWindow::set_italic);
-    connect(ui->actionUnderline, &QAction::triggered, this, &MainWindow::set_underline);
-    connect(ui->actionStrikeout, &QAction::triggered, this, &MainWindow::set_strikeout);
-    // UNDO REDO
-    connect(ui->actionUndo, &QAction::triggered, ui->text_area, &QTextEdit::undo);
-    connect(ui->actionRedo, &QAction::triggered, ui->text_area, &QTextEdit::redo);
-    // ZOOM IN AND OUT
-    connect(ui->actionZoom_In, &QAction::triggered, this, &MainWindow::set_zoom_in);
-    connect(ui->actionZoom_Out, &QAction::triggered, this, &MainWindow::set_zoom_out);
-
-    // FONT
-    connect(ui->actionFont, &QAction::triggered, this, &MainWindow::set_font);
-    // COLOUR
-    connect(ui->actionColour, &QAction::triggered, this, &MainWindow::set_colour);
-    // ALIGNMENT
-    connect(ui->actionAlign_center, &QAction::triggered, this, &MainWindow::set_align_center);
-    connect(ui->actionAlign_Justify, &QAction::triggered, this, &MainWindow::set_align_justify);
-    connect(ui->actionAlign_left, &QAction::triggered, this, &MainWindow::set_align_left);
-    connect(ui->actionAlign_right, &QAction::triggered, this, &MainWindow::set_align_right);
-
-    // PRINTER
-    connect(ui->actionPrint, &QAction::triggered, this, &MainWindow::print_dialog);
-    connect(ui->actionPrint_preview, &QAction::triggered, this, &MainWindow::preview_print_dialog);
-
-
+    setup_connections();
     setup_statusbar();
     new_file();
     m_save = true;
@@ -219,6 +172,56 @@ void MainWindow::update_status(QString message)
     }
 
     label_fileName->setText(m_file_name);
+}
+
+void MainWindow::setup_connections()
+{
+    // SIGNALS and SLOTS here!!!
+    connect(ui->actionNew, &QAction::triggered, this, &MainWindow::new_file); // new file
+    connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::open_file); // open file
+    connect(ui->actionSave, &QAction::triggered, this, &MainWindow::save_file); // save file
+    connect(ui->actionSave_As, &QAction::triggered, this, &MainWindow::save_as); // save as
+    // CUT COPY PASTE.....
+    connect(ui->actionSelect_All, &QAction::triggered, ui->text_area, &QTextEdit::selectAll); // select all
+    connect(ui->actionSelect_none, &QAction::triggered, this, &MainWindow::select_none);
+    connect(ui->actionCut, &QAction::triggered, ui->text_area, &QTextEdit::cut);
+    connect(ui->actionCopy, &QAction::triggered, ui->text_area, &QTextEdit::copy);
+    connect(ui->actionPaste, &QAction::triggered, ui->text_area, &QTextEdit::paste);
+    connect(ui->actionClose, &QAction::triggered, this, &MainWindow::close);
+    connect(ui->actionClear, &QAction::triggered, ui->text_area, &QTextEdit::clear);
+    connect(ui->actionPreference, &QAction::triggered, this, &MainWindow::preference);
+    // TOOL BAR VIEW
+    connect(ui->actionToolbar_top, &QAction::triggered, this, &MainWindow::toolbar_top);
+    connect(ui->actionToolbar_left, &QAction::triggered, this, &MainWindow::toolbar_left);
+    connect(ui->actionToolbar_right, &QAction::triggered, this, &MainWindow::toolbar_right);
+    connect(ui->actionToolbar_bottom, &QAction::triggered, this, &MainWindow::toolbar_bottom);
+    connect(ui->actionToolbar_moveable, &QAction::toggled, this, &MainWindow::toolbar_moveable);
+    connect(ui->actionToolbar_floatable, &QAction::toggled, this, &MainWindow::toolbar_floatable);
+    // TEXT FONT BOLD ITALIC UNDERLINE....
+    connect(ui->actionBold, &QAction::triggered, this, &MainWindow::set_bold);
+    connect(ui->actionItalic, &QAction::triggered, this, &MainWindow::set_italic);
+    connect(ui->actionUnderline, &QAction::triggered, this, &MainWindow::set_underline);
+    connect(ui->actionStrikeout, &QAction::triggered, this, &MainWindow::set_strikeout);
+    // UNDO REDO
+    connect(ui->actionUndo, &QAction::triggered, ui->text_area, &QTextEdit::undo);
+    connect(ui->actionRedo, &QAction::triggered, ui->text_area, &QTextEdit::redo);
+    // ZOOM IN AND OUT
+    connect(ui->actionZoom_In, &QAction::triggered, this, &MainWindow::set_zoom_in);
+    connect(ui->actionZoom_Out, &QAction::triggered, this, &MainWindow::set_zoom_out);
+
+    // FONT
+    connect(ui->actionFont, &QAction::triggered, this, &MainWindow::set_font);
+    // COLOUR
+    connect(ui->actionColour, &QAction::triggered, this, &MainWindow::set_colour);
+    // ALIGNMENT
+    connect(ui->actionAlign_center, &QAction::triggered, this, &MainWindow::set_align_center);
+    connect(ui->actionAlign_Justify, &QAction::triggered, this, &MainWindow::set_align_justify);
+    connect(ui->actionAlign_left, &QAction::triggered, this, &MainWindow::set_align_left);
+    connect(ui->actionAlign_right, &QAction::triggered, this, &MainWindow::set_align_right);
+
+    // PRINTER
+    connect(ui->actionPrint, &QAction::triggered, this, &MainWindow::print_dialog);
+    connect(ui->actionPrint_preview, &QAction::triggered, this, &MainWindow::preview_print_dialog);
 }
 
 void MainWindow::on_text_area_textChanged()

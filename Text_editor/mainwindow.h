@@ -67,5 +67,6 @@ private:
     bool m_save;
     void setup_statusbar();
     void update_status(QString message);
+    void setup_connections();
 };
 #endif // MAINWINDOW_H
